@@ -1,6 +1,7 @@
 package com.scalderwood.pitest.testidentifying;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Ignore;
@@ -25,7 +26,8 @@ public class ControllerTest {
   @Test
   @Ignore
   public void getAdd_Returns200() throws Exception {
-    mockMvc.perform(post("/add")).andExpect(status().isOk()).andReturn();
+    mockMvc.perform(post("/add")).andExpect(status().isOk())
+        .andExpect(content().bytes("add".getBytes()));
   }
 
 }
